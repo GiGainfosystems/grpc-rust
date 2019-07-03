@@ -145,9 +145,7 @@ impl Client {
         let http_scheme = tls.http_scheme();
         let mut builder = httpbis::ClientBuilder::<C>::new();
         builder.set_addr(addr)?;
-        if let httpbis::ClientTlsOption::Tls(ref host, _) = tls {
-            builder.set_tls(host)?;
-        }
+        builder.tls = tls;
         builder.event_loop = event_loop;
         builder.conf = conf.http;
 
